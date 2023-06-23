@@ -1,6 +1,10 @@
 <div class="container">
   <div class="jumbotron mt-4">
-    <h1 class="display-4">Selamat Datang <?= $data['user']['username']  ?>!</h1>
+    <?php if ($data['user'] !== null) : ?>
+      <h1 class="display-4">Selamat Datang <?= $data['user']['username'] ?>!</h1>
+    <?php else : ?>
+      <h1 class="display-4">Selamat Datang!</h1>
+    <?php endif; ?>
     <hr class="my-4">
     <div class="col-md-6">
       <button type="submit" class="btn btn-primary">
