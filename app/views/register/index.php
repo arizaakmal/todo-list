@@ -5,6 +5,8 @@
     </div>
 </div>
 <form action="<?= BASEURL; ?>/register/process" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" required><br><br>
     <label for="email">Email:</label>
     <input type="text" name="email" id="email" required><br><br>
 

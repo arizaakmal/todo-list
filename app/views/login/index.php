@@ -4,7 +4,7 @@
         <?php Flasher::flash(); ?>
     </div>
 </div>
-<form action="<?= BASEURL; ?>/login/process_login" method="POST">
+<form action="<?= BASEURL; ?>/login/process" method="POST">
     <label for="email">Email:</label>
     <input type="text" name="email" id="email" required><br><br>
 

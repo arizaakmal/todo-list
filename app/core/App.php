@@ -2,40 +2,34 @@
 
 class App
 {
-    protected $controller = 'Home';
+    protected $controller = 'HomeController'; // Default controller
     protected $method = 'index';
     protected $params = [];
 
     public function __construct()
     {
-
         $url = $this->parseURL();
 
         if (empty($url)) {
-            $url[0] = 'home';
-        }
-
-        // controller
-        if (preg_match('/^[a-zA-Z0-9_]+$/', $url[0]) && file_exists('../app/controllers/' . $url[0] . '.php')) {
-            $this->controller = $url[0];
-            unset($url[0]);
+            $url[0] = $this->controller;
+        } else {
+            $controllerName = ucfirst($url[0]) . 'Controller';
+            if (file_exists('../app/controllers/' . $controllerName . '.php')) {
+                $this->controller = $controllerName;
+                unset($url[0]);
+            }
         }
 
         require_once '../app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
 
-        // method
-        if (isset($url[1]) && preg_match('/^[a-zA-Z0-9_]+$/', $url[1]) && method_exists($this->controller, $url[1])) {
+        if (isset($url[1]) && method_exists($this->controller, $url[1])) {
             $this->method = $url[1];
             unset($url[1]);
         }
 
-        // params
-        if (!empty($url)) {
-            $this->params = array_values($url);
-        }
+        $this->params = $url ? array_values($url) : [];
 
-        // jalankan controller & method, serta kirimkan params jika ada
         call_user_func_array([$this->controller, $this->method], $this->params);
     }
 
@@ -47,7 +41,7 @@ class App
             $url = explode('/', $url);
             return $url;
         } else {
-            return []; // Mengembalikan array kosong jika $_GET['url'] tidak ada
+            return [];
         }
     }
 }
