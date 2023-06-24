@@ -7,9 +7,11 @@
     <?php endif; ?>
     <hr class="my-4">
     <div class="col-md-6">
-      <button type="submit" class="btn btn-primary">
-        <i class="fas fa-plus"></i> Add New Task
-      </button>
+      <form action="#" method="post">
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-plus"></i> Add New Task
+        </button>
+      </form>
       <table class="table table-sm table-borderless table-striped text-center mx-auto mt-3">
         <thead class="bg-dark text-white">
           <tr>
@@ -35,7 +37,6 @@
           </tr>
         </tbody>
       </table>
-
     </div>
   </div>
 </div>

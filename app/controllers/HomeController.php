@@ -4,6 +4,12 @@ class HomeController extends Controller
 {
     public function index()
     {
+        if (!$this->isLoggedIn()) {
+            // Jika belum login, arahkan ke halaman login
+            header('Location: ' . BASEURL . '/login');
+            exit();
+        }
+
         $data['judul'] = 'Home';
         $data['tasks'] = $this->model('TugasModel')->getAllTask();
         $data['user'] = null;
@@ -16,5 +22,11 @@ class HomeController extends Controller
         $this->view('templates/header', $data);
         $this->view('home/index', $data);
         $this->view('templates/footer');
+    }
+
+    private function isLoggedIn()
+    {
+        // Cek apakah session email sudah terisi
+        return isset($_SESSION['email']);
     }
 }
