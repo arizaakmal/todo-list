@@ -29,4 +29,18 @@ class HomeController extends Controller
         // Cek apakah session email sudah terisi
         return isset($_SESSION['email']);
     }
+
+    public function hapus($id)
+    {
+        var_dump($id);
+        if ($this->model('TugasModel')->deleteTask($id)) {
+            Flasher::setFlash('berhasil', 'dihapus', 'success');
+            header('Location: ' . BASEURL . '/home');
+            exit();
+        } else {
+            Flasher::setFlash('gagal', 'dihapus', 'danger');
+            header('Location: ' . BASEURL . '/home');
+            exit();
+        }
+    }
 }

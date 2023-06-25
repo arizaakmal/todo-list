@@ -41,7 +41,8 @@ class TugasModel
     {
         $this->db->query('DELETE FROM tugas WHERE id = :id');
         $this->db->bind(':id', $id);
+        $this->db->execute();
 
-        return $this->db->execute();
+        return $this->db->rowCount() > 0; // Mengembalikan true jika ada baris yang terpengaruh
     }
 }
