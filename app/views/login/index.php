@@ -1,17 +1,35 @@
-<h2>Login</h2>
-<div class="row">
-    <div class="col-lg-6">
+<head>
+    <style>
+        body {
+            background-image: url('../gambar/gambar.jpg');
+            background-size: auto;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <div class="col-lg-6">
+    <h2 class="text-center">Login</h2>
+    <div class="row">
+      <div class="col-lg-12">
         <?php Flasher::flash(); ?>
+      </div>
     </div>
+    <form action="<?= BASEURL; ?>/login/process" method="POST">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="text" class="form-control" name="email" id="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" name="password" id="password" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <p class="text-center">Don't have an account? <a href="<?= BASEURL; ?>/register">Register here</a></p>
+  </div>
 </div>
-<form action="<?= BASEURL; ?>/login/process" method="POST">
-    <label for="email">Email:</label>
-    <input type="text" name="email" id="email" required><br><br>
-
-    <label for="password">Password:</label>
-    <input type="password" name="password" id="password" required><br><br>
-
-    <input type="submit" value="Login">
-</form>
-<!-- not have account  -->
-<p>Don't have an account? <a href="<?= BASEURL; ?>/register">Register here</a></p>
