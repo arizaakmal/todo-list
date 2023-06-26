@@ -9,15 +9,22 @@ class TugasModel
         $this->db = new Database;
     }
 
-    public function getAllTask($user)
+    public function getAllTask($email)
     {
-        // Query untuk mengambil tugas berdasarkan pengguna
+        // Query untuk mengambil user_id berdasarkan email
+        $query = 'SELECT id FROM users WHERE email = :email';
+        $this->db->query($query);
+        $this->db->bind(':email', $email);
+        $user = $this->db->single();
+
+        // Query untuk mengambil tugas berdasarkan user_id
         $query = 'SELECT * FROM tugas WHERE user_id = :user_id';
         $this->db->query($query);
         $this->db->bind(':user_id', $user['id']);
 
         return $this->db->resultSet();
     }
+
 
     public function addTask($task)
     {

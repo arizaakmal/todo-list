@@ -11,7 +11,10 @@ class HomeController extends Controller
         }
 
         $data['judul'] = 'Home';
-        $data['tasks'] = $this->model('TugasModel')->getAllTask($user);
+        $email = $_SESSION['email'];
+        $data['tasks'] = $this->model('TugasModel')->getAllTask($email);
+
+        // $data['tasks'] = $this->model('TugasModel')->getAllTask($user);
         $data['user'] = null;
 
         if (isset($_SESSION['email'])) {
