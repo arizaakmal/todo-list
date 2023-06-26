@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Jun 2023 pada 15.27
+-- Waktu pembuatan: 26 Jun 2023 pada 10.09
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -24,6 +24,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `task_table`
+--
+
+CREATE TABLE `task_table` (
+  `id` int(5) NOT NULL,
+  `task_name` varchar(300) NOT NULL,
+  `added_tiime` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data untuk tabel `task_table`
+--
+
+INSERT INTO `task_table` (`id`, `task_name`, `added_tiime`) VALUES
+(32, 'tes', '2023-06-22 11:47:36'),
+(34, 'Meeting 2', '2023-06-24 06:32:38');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tugas`
 --
 
@@ -40,7 +60,7 @@ CREATE TABLE `tugas` (
 --
 
 INSERT INTO `tugas` (`id`, `user_id`, `nama_tugas`, `deskripsi_tugas`, `tanggal_dibuat`) VALUES
-(2, 3, 'Meeting', 'Membahas final project web', '2023-06-20 12:23:03');
+(16, 3, 'dssad', 'sdasdsad', '2023-06-25 07:57:28');
 
 -- --------------------------------------------------------
 
@@ -50,6 +70,7 @@ INSERT INTO `tugas` (`id`, `user_id`, `nama_tugas`, `deskripsi_tugas`, `tanggal_
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -58,12 +79,20 @@ CREATE TABLE `users` (
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `password`) VALUES
-(3, 'admin@gmail.com', '$2y$10$GztoX.VJsD5ritUMHb4FGOR2LUHyfptJ545cigR7.YLU96qboMHky');
+INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
+(3, 'Admin', 'admin@gmail.com', '$2y$10$GztoX.VJsD5ritUMHb4FGOR2LUHyfptJ545cigR7.YLU96qboMHky'),
+(4, 'Ariza', 'arizaakmal@gmail.com', '$2y$10$CyK/2vLIVT0fjUwlaRtzHuwitM0VRhGG4YGEErwjsw4Oe9/rLxxMG'),
+(5, 'Deska', 'deska@gmail.com', '$2y$10$aGyNWvxBPQ1OBb2BbKdFQeA8Mzfr/ghHT4bPqpwYd7AVU8soSM5jm');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `task_table`
+--
+ALTER TABLE `task_table`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `tugas`
@@ -83,16 +112,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `task_table`
+--
+ALTER TABLE `task_table`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
 -- AUTO_INCREMENT untuk tabel `tugas`
 --
 ALTER TABLE `tugas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
