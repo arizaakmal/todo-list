@@ -11,7 +11,10 @@ class HomeController extends Controller
         }
 
         $data['judul'] = 'Home';
-        $data['tasks'] = $this->model('TugasModel')->getAllTask();
+        $email = $_SESSION['email'];
+        $data['tasks'] = $this->model('TugasModel')->getAllTask($email);
+
+        // $data['tasks'] = $this->model('TugasModel')->getAllTask($user);
         $data['user'] = null;
 
         if (isset($_SESSION['email'])) {
@@ -28,5 +31,19 @@ class HomeController extends Controller
     {
         // Cek apakah session email sudah terisi
         return isset($_SESSION['email']);
+    }
+
+    public function hapus($id)
+    {
+        var_dump($id);
+        if ($this->model('TugasModel')->deleteTask($id)) {
+            Flasher::setFlash('berhasil', 'dihapus', 'success');
+            header('Location: ' . BASEURL . '/home');
+            exit();
+        } else {
+            Flasher::setFlash('gagal', 'dihapus', 'danger');
+            header('Location: ' . BASEURL . '/home');
+            exit();
+        }
     }
 }
