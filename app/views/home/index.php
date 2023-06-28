@@ -11,6 +11,7 @@
 </head>
 
 
+
 <div class="row">
   <div class="col-lg-6">
     <?php Flasher::flash(); ?>
@@ -18,14 +19,11 @@
 </div>
 <div class="container">
   <div class="jumbotron mt-4">
-    <?php if ($data['user'] !== null) : ?>
-      <h1 class="display-4">Welcome <?= $data['user']['username'] ?>!</h1>
-    <?php else : ?>
-      <h1 class="display-4">Welcome!</h1>
-    <?php endif; ?>
+
+    <h1 class="display-4">Welcome <?= $data['user']['username'] ?>!</h1>
     <hr class="my-4">
     <div class="col-md-6">
-      <form action="<?= BASEURL ?>" method="POST">
+      <form action="<?= BASEURL ?>/home/tambah/" method="POST">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"><i class="fas fa-plus"></i> Add New Task</button>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -38,11 +36,11 @@
                 <form>
                   <div class="mb-3">
                     <label for="nama_tugas" class="col-form-label">Task:</label>
-                    <input type="text" class="form-control" id="nama_tugas">
+                    <input type="text" class="form-control" id="nama_tugas" name="nama_tugas">
                   </div>
                   <div class="mb-3">
                     <label for="deskripsi_tugas" class="col-form-label">Description:</label>
-                    <textarea class="form-control" id="deskripsi_tugas"></textarea>
+                    <textarea class="form-control" id="deskripsi_tugas" name="deskripsi_tugas"></textarea>
                   </div>
                 </form>
               </div>
@@ -88,6 +86,26 @@
           <?php endforeach; ?>
         </tbody>
       </table>
+    </div>
+  </div>
+  <div class="card card-body opacity-75 ">
+    <div class="form-check">
+
+      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+      <label class="form-check-label " for="flexCheckDefault">
+        <del>Meeting</del>
+      </label>
+    </div>
+  </div>
+  <p>
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      Completed <span class="badge text-bg-secondary">4</span>
+    </button>
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+
+      Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
     </div>
   </div>
 </div>

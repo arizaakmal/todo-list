@@ -9,34 +9,38 @@ class TugasModel
         $this->db = new Database;
     }
 
-    public function getAllTask($email)
+    public function getAllTask($userId)
     {
-        // Query untuk mengambil user_id berdasarkan email
-        $query = 'SELECT id FROM users WHERE email = :email';
-        $this->db->query($query);
-        $this->db->bind(':email', $email);
-        $user = $this->db->single();
-
         // Query untuk mengambil tugas berdasarkan user_id
         $query = 'SELECT * FROM tugas WHERE user_id = :user_id';
         $this->db->query($query);
-        $this->db->bind(':user_id', $user['id']);
+        $this->db->bind(':user_id', $userId);
 
         return $this->db->resultSet();
     }
 
 
+
     public function addTask($task)
     {
+        // Ambil user_id dari pengguna yang sedang login
+        $user_id = $_SESSION['user_id']; // Ubah sesuai dengan kunci session yang sesuai
+
+        // Tambahkan logika untuk mengatur tanggal_dibuat menjadi jam sekarang
+        date_default_timezone_set('Asia/Jakarta');
+        $tanggal_dibuat = date('Y-m-d H:i:s');
+
         $this->db->query('INSERT INTO tugas (user_id, nama_tugas, deskripsi_tugas, tanggal_dibuat) VALUES(:user_id, :nama_tugas, :deskripsi_tugas, :tanggal_dibuat)');
-        $this->db->bind(':user_id', $task['user_id']);
+        $this->db->bind(':user_id', $user_id);
         $this->db->bind(':nama_tugas', $task['nama_tugas']);
         $this->db->bind(':deskripsi_tugas', $task['deskripsi_tugas']);
-        $this->db->bind(':tanggal_dibuat', $task['tanggal_dibuat']);
+        $this->db->bind(':tanggal_dibuat', $tanggal_dibuat);
 
+        $this->db->execute();
 
-        return $this->db->execute();
+        return $this->db->rowCount() > 0;
     }
+
 
     public function updateTask($task)
     {

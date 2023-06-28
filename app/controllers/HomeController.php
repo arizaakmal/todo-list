@@ -11,15 +11,19 @@ class HomeController extends Controller
         }
 
         $data['judul'] = 'Home';
-        $email = $_SESSION['email'];
-        $data['tasks'] = $this->model('TugasModel')->getAllTask($email);
+        $user_id = $_SESSION['user_id'];
+        $data['tasks'] = $this->model('TugasModel')->getAllTask($user_id);
+        $data['user'] = null; // Inisialisasi variabel user
 
-        // $data['tasks'] = $this->model('TugasModel')->getAllTask($user);
-        $data['user'] = null;
-
-        if (isset($_SESSION['email'])) {
-            $data['user'] = $this->model('UserModel')->getUserByEmail($_SESSION['email']);
+        if (isset($_SESSION['user_id'])) {
+            // Jika user_id ada dalam sesi, dapatkan informasi pengguna dari database berdasarkan user_id
+            $userId = $_SESSION['user_id'];
+            $userModel = $this->model('UserModel');
+            $data['user'] = $userModel->getUserById($userId); // Ganti getUserById dengan metode yang sesuai pada model Anda
         }
+
+
+
 
 
         $this->view('templates/header', $data);
@@ -30,8 +34,8 @@ class HomeController extends Controller
 
     private function isLoggedIn()
     {
-        // Cek apakah session email sudah terisi
-        return isset($_SESSION['email']);
+        // Cek apakah session user_id sudah terisi
+        return isset($_SESSION['user_id']);
     }
 
     public function hapus($id)
@@ -43,6 +47,19 @@ class HomeController extends Controller
             exit();
         } else {
             Flasher::setFlash('gagal', 'dihapus', 'danger');
+            header('Location: ' . BASEURL . '/home');
+            exit();
+        }
+    }
+
+    public function tambah()
+    {
+        if ($this->model('TugasModel')->addTask($_POST) > 0) {
+            Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+            header('Location: ' . BASEURL . '/home');
+            exit();
+        } else {
+            Flasher::setFlash('gagal', 'ditambahkan', 'danger');
             header('Location: ' . BASEURL . '/home');
             exit();
         }

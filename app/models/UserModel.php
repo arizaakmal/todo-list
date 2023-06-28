@@ -10,17 +10,25 @@ class UserModel
         $this->db = new Database;
     }
 
-    public function getUsername()
+    public function getUserById($userId)
     {
-        return $this->username;
-    }
-
-    public function getUserByEmail($email)
-    {
-        $this->db->query('SELECT * FROM users WHERE email = :email');
-        $this->db->bind(':email', $email);
+        $this->db->query('SELECT * FROM users WHERE id = :id');
+        $this->db->bind(':id', $userId);
         return $this->db->single();
     }
+
+
+    // public function getUsername()
+    // {
+    //     return $this->username;
+    // }
+
+    // public function getUserByEmail($email)
+    // {
+    //     $this->db->query('SELECT * FROM users WHERE email = :email');
+    //     $this->db->bind(':email', $email);
+    //     return $this->db->single();
+    // }
 
     public function register($username, $email, $password)
     {

@@ -21,7 +21,7 @@ class LoginController extends Controller
     public function isLoggedIn()
     {
 
-        return isset($_SESSION['email']);
+        return isset($_SESSION['user_id']);
     }
 
 
@@ -55,12 +55,12 @@ class LoginController extends Controller
                 // Periksa kecocokan password dengan password di database
                 if (password_verify($password, $row['password'])) {
                     // Simpan informasi pengguna ke session
-                    $_SESSION['email'] = $email;
+                    $_SESSION['user_id'] =  $row['id'];
 
                     // Memeriksa apakah kotak centang "Remember Me" dicentang
                     if (isset($_POST['remember'])) {
-                        // Mengatur cookie dengan nama 'remember_me' dengan nilai email pengguna
-                        setcookie('remember_me', $email, time() + (86400 * 30), '/'); // Cookie berlaku selama 30 hari (30 * 86400 detik)
+                        // Mengatur cookie dengan nama 'remember_me' dengan nilai id pengguna
+                        setcookie('remember_me', $row['id'], time() + (86400 * 30), '/'); // Cookie berlaku selama 30 hari (30 * 86400 detik)
                     } else {
                         // Menghapus cookie 'remember_me'
                         setcookie('remember_me', '', time() - 3600, '/');
