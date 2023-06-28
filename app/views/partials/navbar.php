@@ -8,7 +8,7 @@
         </div>
 
         <div class="navbar-nav ">
-            <?php if (isset($_SESSION['email'])) { ?>
+            <?php if (isset($_SESSION['user_id'])) { ?>
                 <a class="nav-item nav-link" href="<?= BASEURL; ?>/login/logout">
                     <i class="fas fa-sign-out-alt"></i>
                     Logout
