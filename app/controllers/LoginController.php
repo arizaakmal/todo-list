@@ -5,6 +5,7 @@ class LoginController extends Controller
     public function index()
     {
         // Cek jika pengguna sudah login
+
         if ($this->isLoggedIn()) {
             // Jika sudah, redirect ke halaman dashboard atau halaman lain yang sesuai
             header('Location: ' . BASEURL . '/home');
@@ -20,7 +21,7 @@ class LoginController extends Controller
     public function isLoggedIn()
     {
 
-        return isset($_SESSION['user_id']);
+        return isset($_SESSION['email']);
     }
 
 
@@ -56,6 +57,15 @@ class LoginController extends Controller
                     // Simpan informasi pengguna ke session
                     $_SESSION['email'] = $email;
 
+                    // Memeriksa apakah kotak centang "Remember Me" dicentang
+                    if (isset($_POST['remember'])) {
+                        // Mengatur cookie dengan nama 'remember_me' dengan nilai email pengguna
+                        setcookie('remember_me', $email, time() + (86400 * 30), '/'); // Cookie berlaku selama 30 hari (30 * 86400 detik)
+                    } else {
+                        // Menghapus cookie 'remember_me'
+                        setcookie('remember_me', '', time() - 3600, '/');
+                    }
+
                     // Redirect ke halaman setelah login berhasil
                     header('Location: ' . BASEURL . '/home');
                     exit;
@@ -87,6 +97,9 @@ class LoginController extends Controller
 
         // Hancurkan session
         session_destroy();
+
+        // Hapus cookie 'remember_me'
+        setcookie('remember_me', '', time() - 3600, '/');
 
         // Redirect ke halaman login setelah logout berhasil
         header('Location: ' . BASEURL . '/login');

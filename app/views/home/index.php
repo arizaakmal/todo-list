@@ -1,3 +1,16 @@
+<head>
+  <style>
+    body {
+      background-image: url('<?= BASEURL; ?>/img/bg-2.jpg');
+      /* background-image: url('../gambar/gambar.jpg'); */
+      background-size: auto;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+  </style>
+</head>
+
+
 <div class="row">
   <div class="col-lg-6">
     <?php Flasher::flash(); ?>
@@ -6,9 +19,9 @@
 <div class="container">
   <div class="jumbotron mt-4">
     <?php if ($data['user'] !== null) : ?>
-      <h1 class="display-4">Selamat Datang <?= $data['user']['username'] ?>!</h1>
+      <h1 class="display-4">Welcome <?= $data['user']['username'] ?>!</h1>
     <?php else : ?>
-      <h1 class="display-4">Selamat Datang!</h1>
+      <h1 class="display-4">Welcome!</h1>
     <?php endif; ?>
     <hr class="my-4">
     <div class="col-md-6">
@@ -24,11 +37,11 @@
               <div class="modal-body">
                 <form>
                   <div class="mb-3">
-                    <label for="nama_tugas" class="col-form-label">Tugas:</label>
+                    <label for="nama_tugas" class="col-form-label">Task:</label>
                     <input type="text" class="form-control" id="nama_tugas">
                   </div>
                   <div class="mb-3">
-                    <label for="deskripsi_tugas" class="col-form-label">Deskripsi:</label>
+                    <label for="deskripsi_tugas" class="col-form-label">Description:</label>
                     <textarea class="form-control" id="deskripsi_tugas"></textarea>
                   </div>
                 </form>
@@ -45,12 +58,12 @@
       <table class="table table-sm table-borderless table-striped text-center mx-auto mt-3">
         <thead class="bg-dark text-white">
           <tr>
-            <th scope="col">Nomor</th>
-            <th scope="col">Tugas</th>
-            <th scope="col">Deskripsi</th>
-            <th scope="col">Tanggal Add</th>
-            <th scope="col">Waktu Add</th>
-            <th scope="col">Option</th>
+            <th scope="col">Number</th>
+            <th scope="col">Task</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date Added</th>
+            <th scope="col">Time Added</th>
+            <th scope="col">Options</th>
           </tr>
         </thead>
         <tbody>

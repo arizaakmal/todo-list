@@ -32,11 +32,4 @@ class UserModel
         $this->db->bind(':password', $hashedPassword);
         $this->db->execute();
     }
-
-
-
-
-    // Metode lain untuk mengakses data pengguna, seperti menyimpan pengguna ke database, mengambil semua pengguna, dll.
-    // ...
-
 }

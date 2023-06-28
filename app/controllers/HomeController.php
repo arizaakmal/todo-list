@@ -23,6 +23,7 @@ class HomeController extends Controller
 
 
         $this->view('templates/header', $data);
+        $this->view('partials/navbar', $data);
         $this->view('home/index', $data);
         $this->view('templates/footer');
     }

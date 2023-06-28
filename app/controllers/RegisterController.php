@@ -4,10 +4,22 @@ class RegisterController extends Controller
 {
     public function index()
     {
+        if ($this->isLoggedIn()) {
+            // Jika sudah, redirect ke halaman dashboard atau halaman lain yang sesuai
+            header('Location: ' . BASEURL . '/home');
+            exit;
+        }
+
         $data['judul'] = 'Register';
         $this->view('templates/header', $data);
         $this->view('register/index');
         $this->view('templates/footer');
+    }
+
+    public function isLoggedIn()
+    {
+
+        return isset($_SESSION['email']);
     }
 
     public function process()
