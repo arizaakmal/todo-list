@@ -14,7 +14,7 @@
     <div class="col-lg-4 rounded p-4 opacity-75" style="background-color:#f7f3e9">
         <h2 class="text-center">REGISTER</h2>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <?php Flasher::flash(); ?>
             </div>
         </div>

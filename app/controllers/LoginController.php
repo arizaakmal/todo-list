@@ -101,8 +101,10 @@ class LoginController extends Controller
         // Hapus cookie 'remember_me'
         setcookie('remember_me', '', time() - 3600, '/');
 
+
         // Redirect ke halaman login setelah logout berhasil
         header('Location: ' . BASEURL . '/login');
+
         exit;
     }
 }

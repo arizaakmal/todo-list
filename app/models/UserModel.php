@@ -18,17 +18,21 @@ class UserModel
     }
 
 
-    // public function getUsername()
-    // {
-    //     return $this->username;
-    // }
+    public function getUserByUsername($username)
+    {
+        $query = 'SELECT * FROM users WHERE username = :username';
+        $this->db->query($query);
+        $this->db->bind(':username', $username);
+        return $this->db->single();
+    }
 
-    // public function getUserByEmail($email)
-    // {
-    //     $this->db->query('SELECT * FROM users WHERE email = :email');
-    //     $this->db->bind(':email', $email);
-    //     return $this->db->single();
-    // }
+
+    public function getUserByEmail($email)
+    {
+        $this->db->query('SELECT * FROM users WHERE email = :email');
+        $this->db->bind(':email', $email);
+        return $this->db->single();
+    }
 
     public function register($username, $email, $password)
     {

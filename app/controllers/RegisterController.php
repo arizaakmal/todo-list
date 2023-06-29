@@ -31,12 +31,45 @@ class RegisterController extends Controller
             $email = $_POST['email'];
             $password = $_POST['password'];
 
-            // Lakukan validasi keunikan email di sini
-            $result = $this->model('UserModel')->getUserByEmail($email);
+            // Validasi username
+            if (strlen($username) < 5) {
+                Flasher::setFlash('Weak username.', 'Username should be at least 5 characters long.', 'danger');
+                header('Location: ' . BASEURL . '/register');
+                exit();
+            }
 
-            if ($result) {
+            // Lakukan validasi keunikan username
+            $usernameResult = $this->model('UserModel')->getUserByUsername($username);
+
+            // Validasi email
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                Flasher::setFlash('Invalid email format.', 'Please enter a valid email address.', 'danger');
+                header('Location: ' . BASEURL . '/register');
+                exit();
+            }
+
+            // Lakukan validasi keunikan email
+            $emailResult = $this->model('UserModel')->getUserByEmail($email);
+
+            // Validasi panjang password
+            if (strlen($password) < 5) {
+                Flasher::setFlash('Weak password.', 'Password should be at least 5 characters long.', 'danger');
+                header('Location: ' . BASEURL . '/register');
+                exit();
+            }
+
+
+
+
+            if ($emailResult) {
                 // Email sudah ada dalam database
                 Flasher::setFlash('Email is already taken.', 'Please choose a different one.', 'danger');
+
+                header('Location: ' . BASEURL . '/register');
+                exit();
+            } elseif ($usernameResult) {
+                // Username sudah ada dalam database
+                Flasher::setFlash('Username is already taken.', 'Please choose a different one.', 'danger');
 
                 header('Location: ' . BASEURL . '/register');
                 exit();

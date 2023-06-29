@@ -42,11 +42,11 @@ class HomeController extends Controller
     {
         var_dump($id);
         if ($this->model('TugasModel')->deleteTask($id)) {
-            Flasher::setFlash('berhasil', 'dihapus', 'success');
+            Flasher::setFlash('Task deleted successfully.', '', 'success');
             header('Location: ' . BASEURL . '/home');
             exit();
         } else {
-            Flasher::setFlash('gagal', 'dihapus', 'danger');
+            Flasher::setFlash('Failed to delete task.', '', 'danger');
             header('Location: ' . BASEURL . '/home');
             exit();
         }
@@ -55,11 +55,25 @@ class HomeController extends Controller
     public function tambah()
     {
         if ($this->model('TugasModel')->addTask($_POST) > 0) {
-            Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+            Flasher::setFlash('Task added successfully.', '', 'success');
             header('Location: ' . BASEURL . '/home');
             exit();
         } else {
-            Flasher::setFlash('gagal', 'ditambahkan', 'danger');
+            Flasher::setFlash('Task failed to add.', '', 'danger');
+            header('Location: ' . BASEURL . '/home');
+            exit();
+        }
+    }
+
+    public function update()
+    {
+
+        if ($this->model('TugasModel')->updateTask($_POST) > 0) {
+            Flasher::setFlash('Task updated successfully.', '', 'success');
+            header('Location: ' . BASEURL . '/home');
+            exit();
+        } else {
+            Flasher::setFlash('Task failed to update.', '', 'danger');
             header('Location: ' . BASEURL . '/home');
             exit();
         }

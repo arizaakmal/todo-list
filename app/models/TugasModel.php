@@ -44,13 +44,24 @@ class TugasModel
 
     public function updateTask($task)
     {
-        $this->db->query('UPDATE tugas SET nama_tugas = :nama_tugas, deskripsi_tugas = :deskripsi_tugas WHERE id = :id');
+        $user_id = $_SESSION['user_id']; // Ubah sesuai dengan kunci session yang sesuai
+
+        // Tambahkan logika untuk mengatur tanggal_dibuat menjadi jam sekarang
+        date_default_timezone_set('Asia/Jakarta');
+        $tanggal_dibuat = date('Y-m-d H:i:s');
+
+        $this->db->query('UPDATE tugas SET user_id = :user_id, nama_tugas = :nama_tugas, deskripsi_tugas = :deskripsi_tugas, tanggal_dibuat = :tanggal_dibuat WHERE id = :id');
+        $this->db->bind(':user_id', $user_id);
         $this->db->bind(':nama_tugas', $task['nama_tugas']);
         $this->db->bind(':deskripsi_tugas', $task['deskripsi_tugas']);
         $this->db->bind(':id', $task['id']);
+        $this->db->bind(':tanggal_dibuat', $tanggal_dibuat);
 
-        return $this->db->execute();
+        $this->db->execute();
+
+        return $this->db->rowCount() > 0;
     }
+
 
     public function deleteTask($id)
     {
