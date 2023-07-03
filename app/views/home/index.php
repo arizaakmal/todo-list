@@ -1,7 +1,7 @@
 <head>
   <style>
     body {
-      background-image: url('<?= BASEURL; ?>/img/bg-2.jpg');
+      background-image: url('<?= BASEURL; ?>/img/bg-home.png');
       /* background-image: url('../gambar/gambar.jpg'); */
       background-size: auto;
       background-attachment: fixed;
@@ -12,7 +12,7 @@
 
 <div class="container">
   <div class="jumbotron mt-4">
-    <h1 class="display-4 fw-semibold">Welcome <?= $data['user']['username'] ?>!</h1>
+    <h1 class="display-4 fw-semibold text-white text-end">Welcome <?= $data['user']['username'] ?>!</h1>
     <hr class="my-4">
     <div class="row align-items-md-stretch">
       <div class="col-md-4">
@@ -179,29 +179,8 @@
 
 
 </div>
-
-
-
-<!-- <div class="card card-body opacity-75">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-      <label class="form-check-label" for="flexCheckDefault">
-        <del>Meeting</del>
-      </label>
-    </div>
-  </div> -->
-<!-- <p>
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-      Completed <span class="badge text-bg-secondary">4</span>
-    </button>
-  </p>
-  <div class="collapse" id="collapseExample">
-    <div class="card card-body">
-      Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-    </div>
-  </div> -->
-<footer class="pt-3 mt-4 text-body-secondary border-top text-center mb-3">
-  Copyright 2023 &copy; Kelompok 4
+<footer class="pt-3 mt-4 text-body-secondary text-center mb-3">
+  <p class="text-white"> Copyright 2023 &copy; Kelompok 4</p>
 </footer>
 
 </div>
