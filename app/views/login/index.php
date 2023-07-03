@@ -1,18 +1,18 @@
 <head>
   <style>
     body {
-      background-color: #513cc8;
-      /* background-image: url('<?= BASEURL; ?>/img/bg-1.jpg');
+      /* background-color: #513cc8; */
+      background-image: url('<?= BASEURL; ?>/img/artboard1.png');
       background-size: auto;
       background-attachment: fixed;
-      background-size: cover; */
+      background-size: cover;
     }
   </style>
 </head>
 
 
 <div class="d-flex justify-content-center align-items-center" style="height: 100vh; ">
-  <div class="col-lg-4 rounded p-4 opacity-75" style="background-color:#f7f3e9">
+  <div class="col-lg-4 rounded p-4 text-white">
     <h2 class="text-center">LOGIN</h2>
     <div class="row">
 
@@ -38,6 +38,6 @@
       </div>
       <button type="submit" class="btn btn-primary col-sm-12 mt-2">Login</button>
     </form>
-    <p class="text-center mt-2">Don't have an account? <a href="<?= BASEURL; ?>/register">Register here</a></p>
+    <p class="text-center mt-2">Don't have an account? <a class="text-warning" href="<?= BASEURL; ?>/register">Register here</a></p>
   </div>
 </div>
