@@ -1,11 +1,11 @@
 <head>
   <style>
     body {
-      background-image: url('<?= BASEURL; ?>/img/bg-1.jpg');
-      /* background-image: url('../gambar/gambar.jpg'); */
+      background-color: #513cc8;
+      /* background-image: url('<?= BASEURL; ?>/img/bg-1.jpg');
       background-size: auto;
       background-attachment: fixed;
-      background-size: cover;
+      background-size: cover; */
     }
   </style>
 </head>

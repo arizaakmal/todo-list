@@ -22,10 +22,6 @@ class HomeController extends Controller
             $data['user'] = $userModel->getUserById($userId); // Ganti getUserById dengan metode yang sesuai pada model Anda
         }
 
-
-
-
-
         $this->view('templates/header', $data);
         $this->view('partials/navbar', $data);
         $this->view('home/index', $data);
