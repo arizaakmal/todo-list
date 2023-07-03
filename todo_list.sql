@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Jun 2023 pada 10.09
+-- Waktu pembuatan: 03 Jul 2023 pada 04.50
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -24,26 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `task_table`
---
-
-CREATE TABLE `task_table` (
-  `id` int(5) NOT NULL,
-  `task_name` varchar(300) NOT NULL,
-  `added_tiime` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data untuk tabel `task_table`
---
-
-INSERT INTO `task_table` (`id`, `task_name`, `added_tiime`) VALUES
-(32, 'tes', '2023-06-22 11:47:36'),
-(34, 'Meeting 2', '2023-06-24 06:32:38');
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `tugas`
 --
 
@@ -51,16 +31,21 @@ CREATE TABLE `tugas` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `nama_tugas` varchar(255) NOT NULL,
-  `deskripsi_tugas` text NOT NULL,
-  `tanggal_dibuat` timestamp NOT NULL DEFAULT current_timestamp()
+  `deskripsi_tugas` text DEFAULT NULL,
+  `tanggal_dibuat` timestamp NOT NULL DEFAULT current_timestamp(),
+  `deadline` datetime DEFAULT NULL,
+  `status` varchar(10) NOT NULL DEFAULT 'Undone'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `tugas`
 --
 
-INSERT INTO `tugas` (`id`, `user_id`, `nama_tugas`, `deskripsi_tugas`, `tanggal_dibuat`) VALUES
-(16, 3, 'dssad', 'sdasdsad', '2023-06-25 07:57:28');
+INSERT INTO `tugas` (`id`, `user_id`, `nama_tugas`, `deskripsi_tugas`, `tanggal_dibuat`, `deadline`, `status`) VALUES
+(37, 3, 'fassafsafsfddddddddddddddddddddd', 'sdsasdadass', '2023-07-03 02:02:54', '2023-08-04 10:07:36', 'Undone'),
+(40, 3, 'fassafsafsf', 'da', '2023-07-02 03:23:35', '2023-07-29 14:00:00', 'Undone'),
+(41, 3, 'sadsa update sfdfdfsdfds', 'sadsada', '2023-07-03 01:59:40', '2023-07-19 10:25:00', 'Done'),
+(42, 3, 'jalan-jalan', 'gassss', '2023-07-03 02:27:22', '2023-08-01 10:27:00', 'Undone');
 
 -- --------------------------------------------------------
 
@@ -82,17 +67,12 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
 (3, 'Admin', 'admin@gmail.com', '$2y$10$GztoX.VJsD5ritUMHb4FGOR2LUHyfptJ545cigR7.YLU96qboMHky'),
 (4, 'Ariza', 'arizaakmal@gmail.com', '$2y$10$CyK/2vLIVT0fjUwlaRtzHuwitM0VRhGG4YGEErwjsw4Oe9/rLxxMG'),
-(5, 'Deska', 'deska@gmail.com', '$2y$10$aGyNWvxBPQ1OBb2BbKdFQeA8Mzfr/ghHT4bPqpwYd7AVU8soSM5jm');
+(5, 'Deska', 'deska@gmail.com', '$2y$10$aGyNWvxBPQ1OBb2BbKdFQeA8Mzfr/ghHT4bPqpwYd7AVU8soSM5jm'),
+(9, 'amikom', 'amikom1@gmail.com', '$2y$10$RgRpd2bObjIsqzFD/oFEZ.iy6gd8kH2x20nO7ODz9crLHleqr2Dye');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indeks untuk tabel `task_table`
---
-ALTER TABLE `task_table`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `tugas`
@@ -112,22 +92,16 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT untuk tabel `task_table`
---
-ALTER TABLE `task_table`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
---
 -- AUTO_INCREMENT untuk tabel `tugas`
 --
 ALTER TABLE `tugas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
