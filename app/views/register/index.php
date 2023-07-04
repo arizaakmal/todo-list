@@ -1,7 +1,7 @@
 <head>
     <style>
         body {
-            background-image: url('<?= BASEURL; ?>/img/bg-1.jpg');
+            background-image: url('<?= BASEURL; ?>/img/artboard1.png');
             /* background-image: url('../gambar/gambar.jpg'); */
             background-size: auto;
             background-attachment: fixed;
@@ -11,7 +11,7 @@
 </head>
 
 <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-    <div class="col-lg-4 rounded p-4 opacity-75" style="background-color:#f7f3e9">
+    <div class="col-lg-4 rounded p-4 text-white">
         <h2 class="text-center">REGISTER</h2>
         <div class="row">
             <div class="col-lg-12">
@@ -38,6 +38,6 @@
         </form>
 
         <!-- Alreadny have an account? -->
-        <p class="text-center mt-3">Already have an account? <a href="<?= BASEURL; ?>/login">Login here</a></p>
+        <p class="text-center mt-3">Already have an account? <a class="text-warning" href="<?= BASEURL; ?>/login">Login here</a></p>
     </div>
 </div>

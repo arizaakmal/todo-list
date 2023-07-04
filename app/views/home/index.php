@@ -1,3 +1,23 @@
+<?php
+
+$taskCount = count($data['tasks']);
+
+$completedCount = 0;
+foreach ($data['tasks'] as $task) {
+  if ($task['status'] === 'Done') {
+    $completedCount++;
+  }
+}
+
+$ongoingCount = 0;
+foreach ($data['tasks'] as $task) {
+  if ($task['status'] === 'Undone') {
+    $ongoingCount++;
+  }
+}
+
+?>
+
 <head>
   <style>
     body {
@@ -6,6 +26,24 @@
       background-size: auto;
       background-attachment: fixed;
       background-size: cover;
+    }
+
+    table {
+      border-radius: 1em;
+    }
+
+    .bg-card {
+      opacity: 0.75;
+      /* Opasitas awal */
+      transition: opacity 0.3s ease;
+      /* Efek transisi */
+
+      /* Atur properti lain sesuai kebutuhan */
+    }
+
+    .bg-card:hover {
+      opacity: 1;
+      /* Opasitas saat dihover */
     }
   </style>
 </head>
@@ -16,40 +54,30 @@
     <hr class="my-4">
     <div class="row align-items-md-stretch">
       <div class="col-md-4">
-        <div class="h-100 p-4 bg-success text-white rounded-3 d-flex flex-column justify-content-center align-items-center">
+        <div class="h-100 bg-card p-4 bg-success  text-white rounded-3 d-flex flex-column justify-content-center align-items-center  ">
           <h3 class="mb-2 text-center">Tasks</h3>
-          <h1 class="display-2 text-center">50</h1>
-          <!-- <a href="#" class="btn btn-light btn-sm">View Tasks</a> -->
+          <h1 class="display-2 text-center"><?= $taskCount ?></h1>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="h-100 p-4 bg-warning text-white rounded-3 d-flex flex-column justify-content-center align-items-center">
+        <div class="h-100 bg-card p-4 bg-warning text-white rounded-3 d-flex flex-column justify-content-center align-items-center ">
           <h3 class="mb-2 text-center">Completed</h3>
-          <h1 class="display-2 text-center">24</h1>
-          <!-- <a href="#" class="btn btn-light btn-sm">View Tasks</a> -->
+          <h1 class="display-2 text-center"><?= $completedCount ?></h1>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="h-100 p-4 bg-info text-white rounded-3 d-flex flex-column justify-content-center align-items-center">
+        <div class="h-100 bg-card p-4 bg-info text-white rounded-3 d-flex flex-column justify-content-center align-items-center ">
           <h3 class="mb-2 text-center">Ongoing</h3>
-          <h1 class="display-2 text-center">57</h1>
-          <!-- <a href="#" class="btn btn-light btn-sm">View Tasks</a> -->
+          <h1 class="display-2 text-center"><?= $ongoingCount ?></h1>
         </div>
       </div>
-      <!-- <div class="col-md-4">
-          <div class="h-100 p-4 bg-warning text-white rounded-3 d-flex flex-column justify-content-center align-items-center">
-            <h3 class="mb-2 text-center">undown</h3>
-            <h1 class="display-2 text-center">24</h1>
-            <!-- <a href="#" class="btn btn-light btn-sm">View Tasks</a> -->
-      <!-- </div> --> -->
-
     </div>
   </div>
 
   <form action="<?= BASEURL ?>/home/tambah/" method="POST">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"><i class="fas fa-plus"></i> Add New Task</button>
+    <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"><i class="fas fa-plus"></i> Add New Task</button>
   </form>
-  <div class="mt-2">
+  <div class="mt-2 opacity-75">
     <?php Flasher::flash(); ?>
   </div>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -90,8 +118,8 @@
       </div>
     </div>
   </div>
-  <table class="table table-primary table-borderless text-center mx-auto mt-3">
-    <thead class="bg-dark text-white">
+  <table class="table table-primary  table-borderless text-center mx-auto mt-3 opacity-75 rounded rounded-3 overflow-hidden ">
+    <thead>
       <tr>
         <th scope="col">Number</th>
         <th scope="col">Task</th>
@@ -174,13 +202,7 @@
       <?php endforeach; ?>
     </tbody>
   </table>
-
-
-
-
 </div>
 <footer class="pt-3 mt-4 text-body-secondary text-center mb-3">
-  <p class="text-white"> Copyright 2023 &copy; Kelompok 4</p>
+  <p class="text-white opacity-75"> Copyright 2023 &copy; Kelompok 4</p>
 </footer>
-
-</div>
