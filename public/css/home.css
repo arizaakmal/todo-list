@@ -1,0 +1,32 @@
+body {
+  /* background-image: url('../gambar/gambar.jpg'); */
+  background-size: auto;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+table {
+  border-radius: 1em;
+}
+
+.bg-card {
+  opacity: 0.75;
+  /* Opasitas awal */
+  transition: opacity 0.3s ease;
+}
+
+.bg-card:hover {
+  opacity: 1;
+}
+
+@media screen and (max-width: 767px) {
+  .bg-card {
+    width: 75%;
+    margin: auto;
+    /* Gaya CSS untuk kolom pada ukuran layar di bawah 768px */
+  }
+
+  .col-md-4 {
+    margin-bottom: 20px;
+  }
+}

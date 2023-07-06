@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Jul 2023 pada 04.50
+-- Waktu pembuatan: 06 Jul 2023 pada 09.58
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -43,9 +43,10 @@ CREATE TABLE `tugas` (
 
 INSERT INTO `tugas` (`id`, `user_id`, `nama_tugas`, `deskripsi_tugas`, `tanggal_dibuat`, `deadline`, `status`) VALUES
 (37, 3, 'fassafsafsfddddddddddddddddddddd', 'sdsasdadass', '2023-07-03 02:02:54', '2023-08-04 10:07:36', 'Undone'),
-(40, 3, 'fassafsafsf', 'da', '2023-07-02 03:23:35', '2023-07-29 14:00:00', 'Undone'),
-(41, 3, 'sadsa update sfdfdfsdfds', 'sadsada', '2023-07-03 01:59:40', '2023-07-19 10:25:00', 'Done'),
-(42, 3, 'jalan-jalan', 'gassss', '2023-07-03 02:27:22', '2023-08-01 10:27:00', 'Undone');
+(40, 3, 'fassafsafsf', 'da', '2023-07-06 07:56:54', '2023-07-29 14:00:00', 'Done'),
+(44, 3, 'sadsa update', 'adasdadsa', '2023-07-04 13:38:59', '2023-08-05 02:44:00', 'Done'),
+(46, 3, 'Meeting 123', 'ffdsfsfdsdff', '2023-07-06 04:34:10', '2023-07-18 15:37:00', 'Done'),
+(49, 13, 'FP Web', 'Menambahkan fitur login, register, home, dll', '2023-07-06 07:54:51', '2023-07-28 18:22:00', 'Done');
 
 -- --------------------------------------------------------
 
@@ -66,9 +67,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
 (3, 'Admin', 'admin@gmail.com', '$2y$10$GztoX.VJsD5ritUMHb4FGOR2LUHyfptJ545cigR7.YLU96qboMHky'),
-(4, 'Ariza', 'arizaakmal@gmail.com', '$2y$10$CyK/2vLIVT0fjUwlaRtzHuwitM0VRhGG4YGEErwjsw4Oe9/rLxxMG'),
-(5, 'Deska', 'deska@gmail.com', '$2y$10$aGyNWvxBPQ1OBb2BbKdFQeA8Mzfr/ghHT4bPqpwYd7AVU8soSM5jm'),
-(9, 'amikom', 'amikom1@gmail.com', '$2y$10$RgRpd2bObjIsqzFD/oFEZ.iy6gd8kH2x20nO7ODz9crLHleqr2Dye');
+(13, 'Joko', 'joko@gmail.com', '$2y$10$xfFc.lkUDKI6lg1KvkpoZeL0grHF/JgtHA7ckNgD9/jE0vJdYwOTe');
 
 --
 -- Indexes for dumped tables
@@ -95,13 +94,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `tugas`
 --
 ALTER TABLE `tugas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

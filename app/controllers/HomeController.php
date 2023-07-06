@@ -4,11 +4,13 @@ class HomeController extends Controller
 {
     public function index()
     {
+
         if (!$this->isLoggedIn()) {
             // Jika belum login, arahkan ke halaman login
             header('Location: ' . BASEURL . '/login');
             exit();
         }
+
 
         $data['judul'] = 'Home';
         $user_id = $_SESSION['user_id'];

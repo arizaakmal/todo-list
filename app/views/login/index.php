@@ -9,11 +9,9 @@
     }
   </style>
 </head>
-
-
 <div class="d-flex justify-content-center align-items-center" style="height: 100vh; ">
-  <div class="col-lg-4 rounded p-4 text-white">
-    <h2 class="text-center">LOGIN</h2>
+  <div class="col-lg-4 rounded p-4 " style="background-color: rgb(245,245,245, 0.90 );">
+    <h2 class=" text-center">LOGIN</h2>
     <div class="row">
 
       <div class="col-lg-12">
@@ -36,8 +34,8 @@
           <label class="form-check-label" for="remember">Remember Me</label>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary col-sm-12 mt-2">Login</button>
+      <button type="submit" class="btn btn-primary col-12 mt-2">Login</button>
     </form>
-    <p class="text-center mt-2">Don't have an account? <a class="text-warning" href="<?= BASEURL; ?>/register">Register here</a></p>
+    <p class="text-center mt-2">Don't have an account? <a class="text-info" href="<?= BASEURL; ?>/register">Register here</a></p>
   </div>
 </div>

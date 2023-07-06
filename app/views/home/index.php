@@ -19,54 +19,35 @@ foreach ($data['tasks'] as $task) {
 ?>
 
 <head>
+  <!-- Home CSS -->
+  <link rel="stylesheet" href="<?= BASEURL; ?>/css/home.css">
   <style>
     body {
-      background-image: url('<?= BASEURL; ?>/img/bg-home.png');
-      /* background-image: url('../gambar/gambar.jpg'); */
-      background-size: auto;
-      background-attachment: fixed;
-      background-size: cover;
-    }
-
-    table {
-      border-radius: 1em;
-    }
-
-    .bg-card {
-      opacity: 0.75;
-      /* Opasitas awal */
-      transition: opacity 0.3s ease;
-      /* Efek transisi */
-
-      /* Atur properti lain sesuai kebutuhan */
-    }
-
-    .bg-card:hover {
-      opacity: 1;
-      /* Opasitas saat dihover */
+      background-image: url("<?= BASEURL; ?>/img/bg-home.png");
     }
   </style>
 </head>
-
 <div class="container">
+
+  <!-- Cards -->
   <div class="jumbotron mt-4">
     <h1 class="display-4 fw-semibold text-white text-end">Welcome <?= $data['user']['username'] ?>!</h1>
     <hr class="my-4">
     <div class="row align-items-md-stretch">
-      <div class="col-md-4">
-        <div class="h-100 bg-card p-4 bg-success  text-white rounded-3 d-flex flex-column justify-content-center align-items-center  ">
+      <div class="col-md-4 ">
+        <div class="h-100 bg-card p-4 bg-success text-white rounded-3 d-flex flex-column justify-content-center align-items-center">
           <h3 class="mb-2 text-center">Tasks</h3>
           <h1 class="display-2 text-center"><?= $taskCount ?></h1>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="h-100 bg-card p-4 bg-warning text-white rounded-3 d-flex flex-column justify-content-center align-items-center ">
+        <div class="h-100 bg-card p-4 bg-warning text-white rounded-3 d-flex flex-column justify-content-center align-items-center">
           <h3 class="mb-2 text-center">Completed</h3>
           <h1 class="display-2 text-center"><?= $completedCount ?></h1>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="h-100 bg-card p-4 bg-info text-white rounded-3 d-flex flex-column justify-content-center align-items-center ">
+        <div class="h-100 bg-card p-4 bg-info text-white rounded-3 d-flex flex-column justify-content-center align-items-center">
           <h3 class="mb-2 text-center">Ongoing</h3>
           <h1 class="display-2 text-center"><?= $ongoingCount ?></h1>
         </div>
@@ -74,12 +55,12 @@ foreach ($data['tasks'] as $task) {
     </div>
   </div>
 
+  <!-- Button Modal Box Tambah Data -->
   <form action="<?= BASEURL ?>/home/tambah/" method="POST">
     <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"><i class="fas fa-plus"></i> Add New Task</button>
   </form>
-  <div class="mt-2 opacity-75">
-    <?php Flasher::flash(); ?>
-  </div>
+
+  <!-- Modal Box Tambah Data -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -113,12 +94,17 @@ foreach ($data['tasks'] as $task) {
               <button type="submit" class="btn btn-primary">Create Task</button>
             </div>
           </form>
-
         </div>
       </div>
     </div>
   </div>
-  <table class="table table-primary  table-borderless text-center mx-auto mt-3 opacity-75 rounded rounded-3 overflow-hidden ">
+
+  <div class="mt-2 opacity-75">
+    <?php Flasher::flash(); ?>
+  </div>
+
+  <!-- Table -->
+  <table class="table table-primary table-borderless text-center mx-auto mt-3 opacity-75 rounded rounded-3 overflow-hidden">
     <thead>
       <tr>
         <th scope="col">Number</th>
@@ -134,26 +120,29 @@ foreach ($data['tasks'] as $task) {
       <?php foreach ($data['tasks'] as $index => $task) : ?>
         <tr>
           <th scope="row"><?= $index + 1 ?></th>
-          <td><?php if (strlen($task['nama_tugas']) > 20) : ?>
+          <td>
+            <?php if (strlen($task['nama_tugas']) > 20) : ?>
               <?= substr($task['nama_tugas'], 0, 20) ?>...
             <?php else : ?>
               <?= $task['nama_tugas'] ?>
-            <?php endif; ?></td>
+            <?php endif; ?>
+          </td>
           <td><?= $task['deadline'] ?></td>
           <td><?= $task['tanggal_dibuat'] ?></td>
           <td>
             <?php if ($task['status'] === 'Done') : ?>
-              <i class="fas fa-check text-success"></i> <!-- Tanda centang -->
+              <i class="fas fa-check text-success"></i>
             <?php else : ?>
-              <i class="fas fa-times text-danger"></i> <!-- Tanda silang -->
+              <i class="fas fa-times text-danger"></i>
             <?php endif; ?>
           </td>
-
-          <td> <?php if (strlen($task['deskripsi_tugas']) > 40) : ?>
+          <td>
+            <?php if (strlen($task['deskripsi_tugas']) > 40) : ?>
               <?= substr($task['deskripsi_tugas'], 0, 40) ?>...
             <?php else : ?>
               <?= $task['deskripsi_tugas'] ?>
-            <?php endif; ?></td>
+            <?php endif; ?>
+          </td>
           <td>
             <div class="btn-group">
               <button class="btn btn-warning btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight<?= $task['id'] ?>" aria-controls="offcanvasRight<?= $task['id'] ?>">
@@ -204,5 +193,5 @@ foreach ($data['tasks'] as $task) {
   </table>
 </div>
 <footer class="pt-3 mt-4 text-body-secondary text-center mb-3">
-  <p class="text-white opacity-75"> Copyright 2023 &copy; Kelompok 4</p>
+  <p class="text-white opacity-75">Copyright 2023 &copy; Kelompok 4</p>
 </footer>

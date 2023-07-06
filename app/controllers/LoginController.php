@@ -4,13 +4,23 @@ class LoginController extends Controller
 {
     public function index()
     {
-        // Cek jika pengguna sudah login
+        //cek cookie
+        if (isset($_COOKIE['remember_me'])) {
+            $_SESSION['user_id'] = $_COOKIE['remember_me'];
+            header('Location: ' . BASEURL . '/home');
+            exit;
+        }
 
+        // Cek jika pengguna sudah login
         if ($this->isLoggedIn()) {
             // Jika sudah, redirect ke halaman dashboard atau halaman lain yang sesuai
             header('Location: ' . BASEURL . '/home');
             exit;
         }
+
+
+
+
         $data['judul'] = 'Login';
         // Jika belum login, tampilkan halaman login
         $this->view('templates/header', $data);
@@ -28,7 +38,9 @@ class LoginController extends Controller
 
     public function process()
     {
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
 
         // Cek jika form login telah disubmit
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

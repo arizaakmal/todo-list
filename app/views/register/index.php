@@ -11,7 +11,7 @@
 </head>
 
 <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-    <div class="col-lg-4 rounded p-4 text-white">
+    <div class="col-lg-4 rounded p-4 " style="background-color: rgb(245,245,245, 0.90 );">
         <h2 class="text-center">REGISTER</h2>
         <div class="row">
             <div class="col-lg-12">
@@ -34,10 +34,10 @@
                 <input type="password" class="form-control" name="password" id="password" required>
             </div>
 
-            <button type="submit" class="btn btn-primary col-sm-12 mt-3">Register</button>
+            <button type="submit" class="btn btn-primary col-12 mt-3">Register</button>
         </form>
 
         <!-- Alreadny have an account? -->
-        <p class="text-center mt-3">Already have an account? <a class="text-warning" href="<?= BASEURL; ?>/login">Login here</a></p>
+        <p class="text-center mt-3">Already have an account? <a class="text-info" href="<?= BASEURL; ?>/login">Login here</a></p>
     </div>
 </div>

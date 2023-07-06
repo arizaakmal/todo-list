@@ -32,7 +32,7 @@ class RegisterController extends Controller
             $password = $_POST['password'];
 
             // Validasi username
-            if (strlen($username) < 5) {
+            if (strlen($username) < 3) {
                 Flasher::setFlash('Weak username.', 'Username should be at least 5 characters long.', 'danger');
                 header('Location: ' . BASEURL . '/register');
                 exit();

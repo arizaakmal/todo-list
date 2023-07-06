@@ -27,11 +27,13 @@ class Database
         }
     }
 
+    // query
     public function query($query)
     {
         $this->stmt = $this->dbh->prepare($query);
     }
 
+    // binding data
     public function bind($param, $value, $type = null)
     {
         if (is_null($type)) {
@@ -53,23 +55,27 @@ class Database
         $this->stmt->bindValue($param, $value, $type);
     }
 
+    // execute
     public function execute()
     {
         $this->stmt->execute();
     }
 
+    // result set
     public function resultSet()
     {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // single
     public function single()
     {
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // row count
     public function rowCount()
     {
         return $this->stmt->rowCount();

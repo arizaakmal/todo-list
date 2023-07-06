@@ -8,8 +8,10 @@ class App
 
     public function __construct()
     {
+
         $url = $this->parseURL();
 
+        // Controller
         if (empty($url)) {
             $url[0] = $this->controller;
         } else {
@@ -19,6 +21,7 @@ class App
                 unset($url[0]);
             }
         }
+
 
         require_once '../app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
@@ -33,6 +36,8 @@ class App
         call_user_func_array([$this->controller, $this->method], $this->params);
     }
 
+
+    // Method untuk memecah URL
     public function parseURL()
     {
         if (isset($_GET['url'])) {
