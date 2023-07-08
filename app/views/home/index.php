@@ -1,7 +1,9 @@
 <?php
 
+// menghitung jumlah tugas
 $taskCount = count($data['tasks']);
 
+//menghitung tugas yg sdh selesai
 $completedCount = 0;
 foreach ($data['tasks'] as $task) {
   if ($task['status'] === 'Done') {
@@ -9,6 +11,7 @@ foreach ($data['tasks'] as $task) {
   }
 }
 
+// menghitung tugas yg blm selesai
 $ongoingCount = 0;
 foreach ($data['tasks'] as $task) {
   if ($task['status'] === 'Undone') {
@@ -34,18 +37,21 @@ foreach ($data['tasks'] as $task) {
     <h1 class="display-4 fw-semibold text-white text-end">Welcome <?= $data['user']['username'] ?>!</h1>
     <hr class="my-4">
     <div class="row align-items-md-stretch">
+      <!-- Tasks -->
       <div class="col-md-4 ">
         <div class="h-100 bg-card p-4 bg-success text-white rounded-3 d-flex flex-column justify-content-center align-items-center">
           <h3 class="mb-2 text-center">Tasks</h3>
           <h1 class="display-2 text-center"><?= $taskCount ?></h1>
         </div>
       </div>
+      <!-- Completed -->
       <div class="col-md-4">
         <div class="h-100 bg-card p-4 bg-warning text-white rounded-3 d-flex flex-column justify-content-center align-items-center">
           <h3 class="mb-2 text-center">Completed</h3>
           <h1 class="display-2 text-center"><?= $completedCount ?></h1>
         </div>
       </div>
+      <!-- Ongoing -->
       <div class="col-md-4">
         <div class="h-100 bg-card p-4 bg-info text-white rounded-3 d-flex flex-column justify-content-center align-items-center">
           <h3 class="mb-2 text-center">Ongoing</h3>
@@ -99,6 +105,8 @@ foreach ($data['tasks'] as $task) {
     </div>
   </div>
 
+
+  <!-- Pesan peringatan cnth: Tugas berhasil dihapus --> 
   <div class="mt-2 opacity-75">
     <?php Flasher::flash(); ?>
   </div>
@@ -119,7 +127,10 @@ foreach ($data['tasks'] as $task) {
     <tbody>
       <?php foreach ($data['tasks'] as $index => $task) : ?>
         <tr>
+          <!-- Menampilkan nomer -->
           <th scope="row"><?= $index + 1 ?></th>
+
+          <!-- Nama tugas -->
           <td>
             <?php if (strlen($task['nama_tugas']) > 20) : ?>
               <?= substr($task['nama_tugas'], 0, 20) ?>...
@@ -127,8 +138,12 @@ foreach ($data['tasks'] as $task) {
               <?= $task['nama_tugas'] ?>
             <?php endif; ?>
           </td>
+          <!-- deadline -->
           <td><?= $task['deadline'] ?></td>
+          <!-- tgl dibuat -->
           <td><?= $task['tanggal_dibuat'] ?></td>
+
+          <!-- status selesai/blm selesai -->
           <td>
             <?php if ($task['status'] === 'Done') : ?>
               <i class="fas fa-check text-success"></i>
@@ -136,6 +151,7 @@ foreach ($data['tasks'] as $task) {
               <i class="fas fa-times text-danger"></i>
             <?php endif; ?>
           </td>
+          <!-- deskripsi tugas -->
           <td>
             <?php if (strlen($task['deskripsi_tugas']) > 40) : ?>
               <?= substr($task['deskripsi_tugas'], 0, 40) ?>...
@@ -143,6 +159,8 @@ foreach ($data['tasks'] as $task) {
               <?= $task['deskripsi_tugas'] ?>
             <?php endif; ?>
           </td>
+
+          <!-- button edit/update dan hapus -->
           <td>
             <div class="btn-group">
               <button class="btn btn-warning btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight<?= $task['id'] ?>" aria-controls="offcanvasRight<?= $task['id'] ?>">
