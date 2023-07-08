@@ -38,7 +38,7 @@ class HomeController extends Controller
 
     public function hapus($id)
     {
-        var_dump($id);
+
         if ($this->model('TugasModel')->deleteTask($id)) {
             Flasher::setFlash('Task deleted successfully.', '', 'success');
             header('Location: ' . BASEURL . '/home');
