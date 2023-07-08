@@ -106,7 +106,7 @@ foreach ($data['tasks'] as $task) {
   </div>
 
 
-  <!-- Pesan peringatan cnth: Tugas berhasil dihapus --> 
+  <!-- Pesan peringatan cnth: Tugas berhasil dihapus -->
   <div class="mt-2 opacity-75">
     <?php Flasher::flash(); ?>
   </div>
@@ -166,7 +166,7 @@ foreach ($data['tasks'] as $task) {
               <button class="btn btn-warning btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight<?= $task['id'] ?>" aria-controls="offcanvasRight<?= $task['id'] ?>">
                 <i class="fas fa-edit"></i>
               </button>
-              <a class="btn btn-danger btn-sm" href="<?= BASEURL ?>/home/hapus/<?= $task['id'] ?>">
+              <a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete?')" href="<?= BASEURL ?>/home/hapus/<?= $task['id'] ?>">
                 <i class="fas fa-trash"></i>
               </a>
             </div>
