@@ -1,7 +1,5 @@
 # todo-list
 
-Aplikasi Web Todo List Final Project Pemrograman Web
+Web Application Todo List for Final Project Web Programming
 
-Note:
-
-- Password login semua user = "password"
+Login password for all users = "password"
