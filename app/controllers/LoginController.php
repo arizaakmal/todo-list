@@ -2,25 +2,36 @@
 
 class LoginController extends Controller
 {
+   
     public function index()
     {
-        //cek cookie
-        if (isset($_COOKIE['remember_me'])) {
-            $_SESSION['user_id'] = $_COOKIE['remember_me'];
-            header('Location: ' . BASEURL . '/home');
-            exit;
+        // Cek cookie
+        if (isset($_COOKIE['remember_me']) && !isset($_SESSION['user_id'])) {
+            $userId = $_COOKIE['remember_me'];
+            
+            // Validasi ID di database
+            $user = $this->model('UserModel')->getUserById($userId);
+            
+            if ($user) {
+                $_SESSION['user_id'] = $userId;
+                header('Location: ' . BASEURL . '/home');
+                exit;
+            } else {
+                // Hapus cookie jika user tidak ditemukan
+                setcookie('remember_me', '', time() - 3600, '/');
+            }
         }
-
+        
+    
         // Cek jika pengguna sudah login
         if ($this->isLoggedIn()) {
-            // Jika sudah, redirect ke halaman dashboard atau halaman lain yang sesuai
-            header('Location: ' . BASEURL . '/home');
-            exit;
+            // Jika sudah login, pastikan tidak redirect ke halaman login
+            if (strpos($_SERVER['REQUEST_URI'], '/login') !== false) {
+                header('Location: ' . BASEURL . '/home');
+                exit;
+            }
         }
-
-
-
-
+    
         $data['judul'] = 'Login';
         // Jika belum login, tampilkan halaman login
         $this->view('templates/header', $data);
@@ -38,10 +49,6 @@ class LoginController extends Controller
 
     public function process()
     {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-
         // Cek jika form login telah disubmit
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Ambil data dari form
@@ -57,8 +64,10 @@ class LoginController extends Controller
             }
 
             // Query untuk memeriksa kecocokan email dan password di database
-            $query = "SELECT * FROM users WHERE email = '$email'";
-            $result = $conn->query($query);
+            $query = $conn->prepare("SELECT * FROM users WHERE email = ?");
+            $query->bind_param("s", $email);
+            $query->execute();
+            $result = $query->get_result();
 
             // Periksa apakah data pengguna ditemukan
             if ($result->num_rows == 1) {
