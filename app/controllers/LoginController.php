@@ -2,37 +2,31 @@
 
 class LoginController extends Controller
 {
-   
+
     public function index()
     {
-        // Cek cookie
+        $data['judul'] = 'Login';
+
+        // Cek cookie remember_me (jika ada dan belum login)
         if (isset($_COOKIE['remember_me']) && !isset($_SESSION['user_id'])) {
             $userId = $_COOKIE['remember_me'];
-            
-            // Validasi ID di database
             $user = $this->model('UserModel')->getUserById($userId);
-            
+
             if ($user) {
                 $_SESSION['user_id'] = $userId;
                 header('Location: ' . BASEURL . '/home');
                 exit;
             } else {
-                // Hapus cookie jika user tidak ditemukan
                 setcookie('remember_me', '', time() - 3600, '/');
             }
         }
-        
-    
-        // Cek jika pengguna sudah login
+
+        // Jika sudah login, redirect ke home
         if ($this->isLoggedIn()) {
-            // Jika sudah login, pastikan tidak redirect ke halaman login
-            if (strpos($_SERVER['REQUEST_URI'], '/login') !== false) {
-                header('Location: ' . BASEURL . '/home');
-                exit;
-            }
+            header('Location: ' . BASEURL . '/home');
+            exit;
         }
-    
-        $data['judul'] = 'Login';
+
         // Jika belum login, tampilkan halaman login
         $this->view('templates/header', $data);
         $this->view('login/index');
